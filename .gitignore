@@ -1,0 +1,71 @@
+# Variables d'environnement avec chemins absolus et données sensibles
+.env
+.env.local
+.env.production
+.env.staging
+
+# Bases de données SQLite (contiennent des données potentiellement sensibles)
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+database-defaut.sqlite
+sample.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dépendances Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build et compilation
+dist/
+build/
+*.tsbuildinfo
+
+# Fichiers de configuration IDE/Éditeur
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Fichiers temporaires et cache
+.tmp/
+.temp/
+.cache/
+*.tmp
+*.temp
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Fichiers de test et coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Fichiers spécifiques au projet MCP
+mcp-config.local.json
+*.local.json
+
+# Trae et autres outils d'analyse
+.trae/
+.llm-context/
+
+# Lock files (optionnel - selon préférence de l'équipe)
+# package-lock.json
+# yarn.lock
+
+# Fichiers de backup
+*.bak
+*.backup
