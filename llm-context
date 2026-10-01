@@ -1,0 +1,19 @@
+{
+  "workspace": "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3",
+  "createdAt": "2025-12-11T19:28:58.585Z",
+  "allowedDirectories": [
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3",
+    "C:\\Users\\Administrator",
+    "C:\\Users\\Administrator\\Desktop",
+    "F:\\Promgramation-teste\\servers",
+    "F:\\Promgramation-teste\\servers\\projet-gateway",
+    "F:\\Promgramation-teste\\servers\\filesystem",
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3\\.llm-context",
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3\\.trae",
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3\\.vscode",
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3\\.windsurf",
+    "f:\\Promgramation-teste\\servers\\mcp-quick-sqlite3\\src"
+  ],
+  "context": [],
+  "version": 1
+}

@@ -69,3 +69,12 @@ mcp-config.local.json
 # Fichiers de backup
 *.bak
 *.backup
+
+# snapshot kit
+.env
+*.env.local
+*.log
+*.pid
+__pycache__/
+*.backup
+llm-context/

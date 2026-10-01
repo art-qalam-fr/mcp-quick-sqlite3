@@ -4,7 +4,7 @@
 import { spawn } from 'child_process';
 import { resolve } from 'path';
 
-console.log('Testing SQLite MCP Server...');
+console.error('Testing SQLite MCP Server...');
 
 const serverPath = resolve('./dist/index.js');
 const server = spawn('node', [serverPath], {
@@ -46,7 +46,7 @@ server.stdout.on('data', (data) => {
     if (line.trim().startsWith('{')) {
       try {
         const response = JSON.parse(line.trim());
-        console.log('Response:', JSON.stringify(response, null, 2));
+        console.error('Response:', JSON.stringify(response, null, 2));
         responseCount++;
         
         if (responseCount === 1) {
@@ -70,7 +70,7 @@ server.on('error', (error) => {
 });
 
 server.on('close', (code) => {
-  console.log(`Server exited with code ${code}`);
+  console.error(`Server exited with code ${code}`);
 });
 
 // Send initialize request
@@ -78,7 +78,7 @@ server.stdin.write(JSON.stringify(initRequest) + '\n');
 
 // Timeout after 10 seconds
 setTimeout(() => {
-  console.log('Test timeout');
+  console.error('Test timeout');
   server.kill();
   process.exit(1);
 }, 10000);
