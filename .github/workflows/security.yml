@@ -42,3 +42,17 @@ jobs:
           sudo freshclam
       - name: Scan repository
         run: clamscan --recursive --infected --exclude-dir='\.git' .
+
+  osv-scan:
+    name: Dependency malware & vulns (OSV-Scanner)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install OSV-Scanner
+        run: |
+          curl -sSfL https://github.com/google/osv-scanner/releases/latest/download/osv-scanner_linux_amd64 -o /tmp/osv-scanner
+          chmod +x /tmp/osv-scanner
+      - name: Scan dependencies (vulns + malicious packages)
+        run: /tmp/osv-scanner scan --recursive --skip-git --format=table .
