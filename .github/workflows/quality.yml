@@ -1,0 +1,61 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  code-smell:
+    name: Code smell (Biome)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Biome check (lint, complexity, style)
+        run: npx --yes @biomejs/biome@2 check --max-diagnostics=200 .
+
+  coverage:
+    name: Code coverage (best effort)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts || npm install --ignore-scripts || true
+      - name: Run coverage if a script exists
+        run: |
+          COV=$(node -p "(Object.keys(require('./package.json').scripts||{}).find(s=>/coverage/i.test(s))||'')")
+          if [ -n "$COV" ]; then npm run "$COV"; else echo "No coverage script in package.json - skipped"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+          if-no-files-found: ignore
+
+  audit:
+    name: Dependency audit (npm audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts || npm install --ignore-scripts
+      - run: npm audit --audit-level=high
